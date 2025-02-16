@@ -107,11 +107,8 @@ managerRoute.get("/:id", authMiddleware, roleMiddleware(["admin"]), async (req, 
  *                 type: string
  *               password:
  *                 type: string
- *               role:
+ *               username:
  *                 type: string
- *                 enum: [manager]
- *               balance:
- *                 type: number
  *     responses:
  *       201:
  *         description: Manager created successfully
@@ -128,6 +125,7 @@ managerRoute.post("/", authMiddleware, roleMiddleware(["admin"]), async (req, re
       email: req.body.email,
       phone: req.body.phone,
       password: req.body.password,
+      username: req.body.username,
       role: "manager",
       balance: 0,
     });
