@@ -99,7 +99,19 @@ managerRoute.get("/:id", authMiddleware, roleMiddleware(["admin"]), async (req, 
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Account'
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *                 enum: [manager]
+ *               balance:
+ *                 type: number
  *     responses:
  *       201:
  *         description: Manager created successfully
@@ -119,7 +131,7 @@ managerRoute.post("/", authMiddleware, roleMiddleware(["admin"]), async (req, re
       role: "manager",
       balance: 0,
     });
-    const newManager = new db.Account(manager);
+    const newManager = await manager.save(); // Save the new manager to the database
     res.status(201).json(newManager);
   } catch (error) {
     res.status(500).json({ message: error.message });
