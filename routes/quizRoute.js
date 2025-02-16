@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/quiz-questions:
+ * /api/quiz:
  *   get:
  *     summary: Lấy danh sách tất cả các câu hỏi quiz
  *     tags: [QuizQuestion]
@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 
 /**
  * @swagger
- * /api/quiz-questions:
+ * /api/quiz:
  *   post:
  *     summary: Tạo một câu hỏi quiz mới
  *     tags: [QuizQuestion]
@@ -99,7 +99,7 @@ router.post("/", async (req, res) => {
 
 /**
  * @swagger
- * /api/quiz-questions/{id}:
+ * /api/quiz/{id}:
  *   put:
  *     summary: Cập nhật một câu hỏi quiz theo ID
  *     tags: [QuizQuestion]
@@ -173,7 +173,7 @@ router.put("/:id", async (req, res) => {
 
 /**
  * @swagger
- * /api/quiz-questions/{id}:
+ * /api/quiz/{id}:
  *   delete:
  *     summary: Xóa một câu hỏi quiz theo ID
  *     tags: [QuizQuestion]
@@ -204,7 +204,7 @@ router.delete("/:id", async (req, res) => {
 
 /**
  * @swagger
- * /api/quiz-questions/submit:
+ * /api/quiz/submit:
  *   post:
  *     summary: Gửi câu trả lời cho các câu hỏi quiz, tính tổng điểm và đưa ra gợi ý loại da
  *     tags: [QuizQuestion]

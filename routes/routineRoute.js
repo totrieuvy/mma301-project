@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/routines:
+ * /api/routine:
  *   get:
  *     summary: Lấy danh sách tất cả routine
  *     tags: [Routine]
@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 
 /**
  * @swagger
- * /api/routines:
+ * /api/routine:
  *   post:
  *     summary: Tạo một routine mới
  *     tags: [Routine]
@@ -99,7 +99,7 @@ router.post("/", async (req, res) => {
 
 /**
  * @swagger
- * /api/routines/{id}:
+ * /api/routine/{id}:
  *   put:
  *     summary: Cập nhật một routine theo ID
  *     tags: [Routine]
@@ -166,7 +166,7 @@ router.put("/:id", async (req, res) => {
 
 /**
  * @swagger
- * /api/routines/{id}:
+ * /api/routine/{id}:
  *   delete:
  *     summary: Xóa một routine theo ID
  *     tags: [Routine]
