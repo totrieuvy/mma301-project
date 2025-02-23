@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const db = require("../models/index");
 const authMiddleware = require("../middleware/authMiddleware");
 const roleMiddleware = require("../middleware/roleMiddleware");
@@ -121,18 +122,42 @@ managerRoute.get("/:id", authMiddleware, roleMiddleware(["admin"]), async (req, 
  */
 managerRoute.post("/", authMiddleware, roleMiddleware(["admin"]), async (req, res) => {
   try {
+    // Validate required fields
+    const { email, phone, password, username } = req.body;
+    if (!email || !password || !username) {
+      return res.status(400).json({ message: "Email, password and username are required" });
+    }
+
+    // Check if email already exists
+    const existingUser = await db.Account.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create new manager
     const manager = new db.Account({
-      email: req.body.email,
-      phone: req.body.phone,
-      password: req.body.password,
-      username: req.body.username,
+      email,
+      phone,
+      password: hashedPassword,
+      username,
       role: "manager",
       balance: 0,
     });
-    const newManager = await manager.save(); // Save the new manager to the database
-    res.status(201).json(newManager);
+
+    const newManager = await manager.save();
+    const managerWithoutPassword = newManager.toObject();
+    delete managerWithoutPassword.password;
+
+    res.status(201).json(managerWithoutPassword);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error creating manager:", error);
+    if (error.name === "ValidationError") {
+      return res.status(400).json({ message: "Invalid input data" });
+    }
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
