@@ -197,7 +197,7 @@ router.delete("/:id", async (req, res) => {
 
 /**
  * @swagger
- * /api/routines/skin/{skinId}:
+ * /api/routine/skin/{skinId}:
  *   get:
  *     summary: Lấy danh sách routine theo Skin ID
  *     tags: [Routine]
