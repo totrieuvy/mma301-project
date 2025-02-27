@@ -377,7 +377,7 @@ authenticationRoute.post("/reset-password", async (req, res) => {
  *                 message:
  *                   type: string
  */
-authenticationRoute.get("/:id", async (req, res) => {
+authenticationRoute.get("/account/:id", async (req, res) => {
   try {
     const account = await db.Account.findById(req.params.id);
     if (!account) {
