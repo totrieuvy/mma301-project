@@ -25,6 +25,7 @@ const feedbackRoute = require("./routes/feedbackRoute");
 const promotionRoute = require("./routes/promotionRoute");
 const quizRoute = require("./routes/quizRoute");
 const routineRoute = require("./routes/routineRoute");
+const accountRoute = require("./routes/accountRoute");
 
 var app = express();
 app.use(cors());
@@ -54,6 +55,7 @@ app.use("/api/feedback", feedbackRoute);
 app.use("/api/promotion", promotionRoute);
 app.use("/api/quiz", quizRoute);
 app.use("/api/routine", routineRoute);
+app.use("/api/account", accountRoute);
 
 setupSwagger(app);
 

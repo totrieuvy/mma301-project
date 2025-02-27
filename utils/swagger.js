@@ -196,10 +196,6 @@ const options = {
               type: "string",
               description: "The password of the user",
             },
-            googleId: {
-              type: "string",
-              description: "The Google ID of the user",
-            },
             username: {
               type: "string",
               description: "The username of the user",
