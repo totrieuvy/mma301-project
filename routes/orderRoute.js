@@ -185,7 +185,7 @@ orderRoute.post("/add-to-cart", authMiddleware, roleMiddleware(["customer"]), as
       vnp_TxnRef: newOrder._id.toString(),
       vnp_OrderInfo: `${newOrder._id}`,
       vnp_OrderType: ProductCode.Other,
-      vnp_ReturnUrl: "https://www.facebook.com/",
+      vnp_ReturnUrl: "yourappname://payment-callback",
       vnp_Locale: VnpLocale.VN,
       vnp_CreateDate: dateFormat(new Date()),
       vnp_ExpireDate: dateFormat(tomorrow),
